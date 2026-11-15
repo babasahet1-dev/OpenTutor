@@ -286,3 +286,4 @@ Check out the [good first issues](https://github.com/zijinz456/OpenTutor/labels/
 [Report Bug](https://github.com/zijinz456/OpenTutor/issues/new?template=bug_report.md) · [Request Feature](https://github.com/zijinz456/OpenTutor/issues/new?template=feature_request.md) · [Join Discussion](https://github.com/zijinz456/OpenTutor/discussions)
 
 </div>
+https://github.com/babasahet1-dev/OpenTutor?utm_source=chatgpt.com
