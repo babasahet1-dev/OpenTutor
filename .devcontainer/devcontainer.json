@@ -1,0 +1,23 @@
+
+{
+  "name": "OpenTutor Codespaces",
+  "image": "mcr.microsoft.com/devcontainers/python:1-3.11-bookworm",
+  "features": {
+    "ghcr.io/devcontainers/features/node:1": {
+      "version": "20"
+    }
+  },
+  "forwardPorts": [3001, 8000],
+  "portsAttributes": {
+    "3001": {
+      "label": "OpenTutor Web",
+      "onAutoForward": "openBrowser"
+    },
+    "8000": {
+      "label": "OpenTutor API",
+      "onAutoForward": "silent"
+    }
+  },
+  "postCreateCommand": "bash -lc 'if [ ! -f .env ]; then cp .env.example .env; fi; mkdir -p \"$HOME/.opentutor\"; python -m venv apps/api/.venv; apps/api/.venv/bin/python -m pip install --upgrade pip; apps/api/.venv/bin/python -m pip install -r apps/api/requirements-core.txt; npm ci --prefix apps/web --no-audit --no-fund'",
+  "postStartCommand": "bash -lc '(cd apps/api && nohup .venv/bin/python -m uvicorn main:app --host 0.0.0.0 --port 8000 >/tmp/opentutor-api.log 2>&1 </dev/null &) && (cd apps/web && nohup npm run dev -- --hostname 0.0.0.0 >/tmp/opentutor-web.log 2>&1 </dev/null &)'"
+}
